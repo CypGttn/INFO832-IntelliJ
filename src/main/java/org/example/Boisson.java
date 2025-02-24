@@ -9,15 +9,25 @@ public class Boisson {
 	public String nom;
 	public Boolean alcoolise;
 	public Float degre;
-	public Float volume; // volume de la bouteille, cennette, fut ...
-	public Float prix;
-	
+
 	/**
 	 * @param nom
 	 */
 	public Boisson(String nom){
 		this.nom = nom;
-		this.alcoolise = new Boolean(false);
+		this.alcoolise = false;
+	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public Boolean getAlcoolise() {
+		return alcoolise;
+	}
+
+	public Float getDegre() {
+		return degre;
 	}
 
 	/**
@@ -38,7 +48,7 @@ public class Boisson {
 	 */
 	public String toString(){
 		String retour = this.nom;
-		if(this.alcoolise){
+		if(Boolean.TRUE.equals(this.alcoolise)){
 			return retour + " (l'abus d'alcool est dangereux pour la sante)";
 		}else{
 			return retour;
