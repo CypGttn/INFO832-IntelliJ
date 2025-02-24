@@ -2,7 +2,7 @@ package org.example;
 
 
 /**
- * @author Pierre Le Fameux
+ * @author Pierre Le Fameux stagiaire
  *
  */
 public class Boisson {
