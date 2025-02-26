@@ -12,10 +12,12 @@ public class Main {
         /* Création du pub */
         Pub pub = new Pub();
 
+        final String biere = "Bière";
+
         Boisson coca = new Boisson("Coca");
         Boisson eau = new Boisson("Eau");
         Boisson sky = new Boisson("Whisky", 40F);
-        Boisson bierre = new Boisson("Bière", 8F);
+        Boisson bierre = new Boisson(biere, 8F);
 
         pub.getCave().add(coca);
         pub.getCave().add(coca);
@@ -28,13 +30,13 @@ public class Main {
 
         LOGGER.info("Cave initiale :\n" + pub.getCave());
 
-        pub.approvisionnerBar("Bière");
+        pub.approvisionnerBar(biere);
         pub.approvisionnerBar("Whisky");
         pub.approvisionnerBar("Coca");
         pub.approvisionnerBar("Eau");
 
         Cocktail maz = new Cocktail("Mazout");
-        maz.add("Bière", 50.0);
+        maz.add(biere, 50.0);
         maz.add("Coca", 50.0);
         pub.getBar().add(maz);
 
@@ -46,7 +48,7 @@ public class Main {
 
         Object servie = pub.getBar().serv("Café");
         if (servie != null) {
-            LOGGER.info("Boisson servie : " + servie);
+            LOGGER.log(Level.INFO, "Boisson servie : {0}", servie);
         } else {
             LOGGER.warning("La boisson demandée n'est pas disponible !");
         }
