@@ -25,16 +25,32 @@
 
     <reporting>
         <plugins>
+            <!-- Plugin Surefire Report -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-report-plugin</artifactId>
                 <version>3.5.2</version>
+            </plugin>
+
+            <!-- Plugin JaCoCo pour rapports de couverture -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.12</version>
+                <reportSets>
+                    <reportSet>
+                        <reports>
+                            <report>report</report>
+                        </reports>
+                    </reportSet>
+                </reportSets>
             </plugin>
         </plugins>
     </reporting>
 
     <build>
         <plugins>
+            <!-- Plugin Surefire pour exécuter les tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -51,22 +67,21 @@
                 <version>3.12.1</version>
             </plugin>
 
-            <!-- Plugin pour générer les rapports Surefire -->
-
-
+            <!-- Plugin JaCoCo (sans reportSets ici) -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.12</version>
                 <executions>
-                    <!-- Préparation de JaCoCo avant les tests -->
+                    <!-- Étape 1 : Activer JaCoCo avant les tests -->
                     <execution>
                         <id>prepare-agent</id>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <!-- Génération du rapport après les tests -->
+
+                    <!-- Étape 2 : Générer le rapport après les tests -->
                     <execution>
                         <id>report</id>
                         <phase>verify</phase>
@@ -78,6 +93,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
