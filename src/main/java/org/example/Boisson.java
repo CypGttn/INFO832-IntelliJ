@@ -6,9 +6,9 @@ package org.example;
  *
  */
 public class Boisson {
-	public String nom;
-	public Boolean alcoolise;
-	public Float degre;
+	private String nom;
+	private Boolean alcoolise;
+	private Float degre;
 
 	/**
 	 * @param nom

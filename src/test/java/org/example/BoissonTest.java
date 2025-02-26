@@ -39,7 +39,7 @@ class BoissonTest {
     @Test
     @DisplayName("id: 3 Test attribut degre")
     void testBoissonAvecNomEtDegre2() {
-        assertEquals(12F,boisson2.degre) ;
+        assertEquals(12F, boisson2.getDegre()) ;
 
     }
 

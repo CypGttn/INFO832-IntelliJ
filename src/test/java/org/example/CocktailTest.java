@@ -14,7 +14,7 @@ class CocktailTest {
     @Test
     @DisplayName("id:2 Test Constructeur Cocktail")
     void testConstructeurCocktail() {
-        assertEquals("Mojito", mojito.nom);
+        assertEquals("Mojito", mojito.getNom());
     }
 
     @Test

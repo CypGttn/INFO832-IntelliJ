@@ -57,7 +57,7 @@ public class Pub {
 		pub.bar.add(maz);
 		
 		Boisson cafe = new Boisson("cafe");
-		pub.bar.boissonChaude.add(cafe);
+		pub.bar.getBoissonChaude().add(cafe);
 		
 		System.out.println(pub.cave);
 		System.out.println(pub.bar);

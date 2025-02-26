@@ -8,20 +8,9 @@ import java.util.Enumeration;
  *
  */
 public class Cocktail {
-	
-	private class Ingrediant{
-		public String ingrediant;
-		public Double quantite;
-		
-		public Ingrediant(String ingrediant, Double quantite){
-			this.ingrediant = ingrediant;
-			this.quantite = quantite;
-		}
-	}
-	
-	public String nom;
-	public Vector<Ingrediant> ingrediants;
-	public Boolean alcoolise;
+	private String nom;
+	private Vector<Ingrediant> ingrediants;
+	private Boolean alcoolise;
 	
 	/**
 	 * Creates a Cocktail with its name
@@ -32,7 +21,23 @@ public class Cocktail {
 		this.ingrediants = new Vector<Ingrediant>();
 		this.alcoolise = false;
 	}
-	
+
+	public String getNom() {
+		return nom;
+	}
+
+	public Vector<Ingrediant> getIngrediants() {
+		return ingrediants;
+	}
+
+	public Boolean getAlcoolise() {
+		return alcoolise;
+	}
+
+	public void setAlcoolise(Boolean alcoolise) {
+		this.alcoolise = alcoolise;
+	}
+
 	/**
 	 * add a new element into the Cocktail.
 	 * @param ingrediant
@@ -43,6 +48,7 @@ public class Cocktail {
 			throw new IllegalArgumentException("La quantité ne peut pas être négative ou nulle");
 		}
 		this.ingrediants.add(new Ingrediant(ingrediant, quantite));
+
 	}
 
 
@@ -63,7 +69,7 @@ public class Cocktail {
 		Ingrediant current;
 		while (e.hasMoreElements ()) {
 			current = (Ingrediant)e.nextElement();
-			retour = retour + current.ingrediant + " " + current.quantite + "%" + "\t";
+			retour = retour + current.getIngrediant() + " " + current.getQuantite() + "%" + "\t";
 		}
 		return retour;
 	}

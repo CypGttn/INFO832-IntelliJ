@@ -7,15 +7,16 @@ import java.util.Enumeration;
  *
  */
 public class Cave {
-	public Vector<Boisson> rayons;
-	
-	/**
-	 * 
-	 */
+	private Vector<Boisson> rayons;
+
 	public Cave(){
 		this.rayons = new Vector<Boisson>();
 	}
-	
+
+	public Vector<Boisson> getRayons() {
+		return rayons;
+	}
+
 	/**
 	 * @param b
 	 */
@@ -30,7 +31,7 @@ public class Cave {
 	public Boisson take(String nom){
 		Boisson retour = null;
 		Enumeration e = this.rayons.elements ();
-		while (e.hasMoreElements () && !((retour=(Boisson)e.nextElement()).nom.equalsIgnoreCase(nom))){}
+		while (e.hasMoreElements () && !((retour = (Boisson) e.nextElement()).getNom().equalsIgnoreCase(nom))){}
 		this.rayons.remove(retour);
 		return retour;
 	}
