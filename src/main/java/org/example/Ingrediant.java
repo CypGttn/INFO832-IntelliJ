@@ -1,16 +1,16 @@
 package org.example;
 
 public class Ingrediant{
-    private String ingrediant;
+    private String nom;
     private Double quantite;
 
-    public Ingrediant(String ingrediant, Double quantite){
-        this.ingrediant = ingrediant;
+    public Ingrediant(String nom, Double quantite){
+        this.nom = nom;
         this.quantite = quantite;
     }
 
-    public String getIngrediant() {
-        return ingrediant;
+    public String getNom() {
+        return nom;
     }
 
     public Double getQuantite() {

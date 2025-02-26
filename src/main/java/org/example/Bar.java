@@ -1,46 +1,48 @@
 package org.example;
 import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * @author Pierre Le Fameux
  *
  */
 public class Bar {
-	private Vector<Boisson> boissonChaude;
-	private Vector<Boisson> boissonFroide;
-	private Vector<Boisson> boissonAlcoolisee;
-	private Vector<Cocktail> cocktailSansAlcoole;
-	private Vector<Cocktail> cocktailAvecAlcoole;
+	private ArrayList<Boisson> boissonChaude;
+	private ArrayList<Boisson> boissonFroide;
+	private ArrayList<Boisson> boissonAlcoolisee;
+	private ArrayList<Cocktail> cocktailSansAlcoole;
+	private ArrayList<Cocktail> cocktailAvecAlcoole;
 
 	/**
 	 * 
 	 */
 	public Bar(){
-		this.boissonChaude = new ArrayList<Boisson>();
-		this.boissonFroide = new ArrayList<Boisson>();
-		this.boissonAlcoolisee = new ArrayList<Boisson>();
+		this.boissonChaude = new ArrayList<>();
+		this.boissonFroide = new ArrayList<>();
+		this.boissonAlcoolisee = new ArrayList<>();
 		
-		this.cocktailAvecAlcoole = new ArrayList<Cocktail>();
-		this.cocktailSansAlcoole = new ArrayList<Cocktail>();
+		this.cocktailAvecAlcoole = new ArrayList<>();
+		this.cocktailSansAlcoole = new ArrayList<>();
 	}
 
-	public Vector<Boisson> getBoissonChaude() {
+	public List<Boisson> getBoissonChaude() {
 		return boissonChaude;
 	}
 
-	public Vector<Boisson> getBoissonFroide() {
+	public List<Boisson> getBoissonFroide() {
 		return boissonFroide;
 	}
 
-	public Vector<Boisson> getBoissonAlcoolisee() {
+	public List<Boisson> getBoissonAlcoolisee() {
 		return boissonAlcoolisee;
 	}
 
-	public Vector<Cocktail> getCocktailSansAlcoole() {
+	public List<Cocktail> getCocktailSansAlcoole() {
 		return cocktailSansAlcoole;
 	}
 
-	public Vector<Cocktail> getCocktailAvecAlcoole() {
+	public List<Cocktail> getCocktailAvecAlcoole() {
 		return cocktailAvecAlcoole;
 	}
 
@@ -48,7 +50,7 @@ public class Bar {
 	 * @param boisson
 	 */
 	public void add(Boisson boisson){
-		if(boisson.getAlcoolise()){
+		if(Boolean.TRUE.equals(boisson.getAlcoolise())){
 			this.boissonAlcoolisee.add(boisson);
 		}else{
 			this.boissonFroide.add(boisson);
@@ -70,46 +72,42 @@ public class Bar {
 	 * @param command
 	 * @return
 	 */
-	public Object serv(String command){
-		Boisson retourB=null;
-		Cocktail retourC=null;
-		Enumeration e;
-		
-		e = this.boissonFroide.elements ();
-		while (e.hasMoreElements () && !((retourB = (Boisson) e.nextElement()).getNom().equalsIgnoreCase(command))){}
-		if(retourB.getNom().equalsIgnoreCase(command)){
-			this.boissonFroide.remove(retourB);
-			return retourB;
+	public Object serv(String command) {
+		for (Boisson b : boissonFroide) {
+			if (b.getNom().equalsIgnoreCase(command)) {
+				boissonFroide.remove(b);
+				return b;
+			}
 		}
-		
-		e = this.boissonAlcoolisee.elements ();
-		while (e.hasMoreElements () && !((retourB = (Boisson) e.nextElement()).getNom().equalsIgnoreCase(command))){}
-		if(retourB.getNom().equalsIgnoreCase(command)){
-			this.boissonAlcoolisee.remove(retourB);
-			return retourB;
+
+		for (Boisson b : boissonAlcoolisee) {
+			if (b.getNom().equalsIgnoreCase(command)) {
+				boissonAlcoolisee.remove(b);
+				return b;
+			}
 		}
-		
-		e = this.boissonChaude.elements ();
-		while (e.hasMoreElements () && !((retourB = (Boisson) e.nextElement()).getNom().equalsIgnoreCase(command))){}
-		if(retourB.getNom().equalsIgnoreCase(command)){
-			this.boissonChaude.remove(retourB);
-			return retourB;
+
+		for (Boisson b : boissonChaude) {
+			if (b.getNom().equalsIgnoreCase(command)) {
+				boissonChaude.remove(b);
+				return b;
+			}
 		}
-		
-		e = this.cocktailSansAlcoole.elements ();
-		while (e.hasMoreElements () && !((retourC = (Cocktail) e.nextElement()).getNom().equalsIgnoreCase(command))){}
-		if(retourC.getNom().equalsIgnoreCase(command)){
-			this.cocktailSansAlcoole.remove(retourC);
-			return retourC;
+
+		for (Cocktail c : cocktailSansAlcoole) {
+			if (c.getNom().equalsIgnoreCase(command)) {
+				cocktailSansAlcoole.remove(c);
+				return c;
+			}
 		}
-		
-		e = this.cocktailAvecAlcoole.elements ();
-		while (e.hasMoreElements () && !((retourC = (Cocktail) e.nextElement()).getNom().equalsIgnoreCase(command))){}
-		if(retourC.getNom().equalsIgnoreCase(command)){
-			this.cocktailAvecAlcoole.remove(retourC);
-			return retourC;
+
+		for (Cocktail c : cocktailAvecAlcoole) {
+			if (c.getNom().equalsIgnoreCase(command)) {
+				cocktailAvecAlcoole.remove(c);
+				return c;
+			}
 		}
-		
+
 		return null;
 	}
 	

@@ -1,7 +1,7 @@
 package org.example;
 
-import java.util.Vector; 
-import java.util.Enumeration;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Pierre Le Fameux
@@ -9,7 +9,7 @@ import java.util.Enumeration;
  */
 public class Cocktail {
 	private String nom;
-	private Vector<Ingrediant> ingrediants;
+	private ArrayList<Ingrediant> ingrediants;
 	private Boolean alcoolise;
 	
 	/**
@@ -18,7 +18,7 @@ public class Cocktail {
 	 */
 	public Cocktail(String nom){
 		this.nom = nom;
-		this.ingrediants = new Vector<Ingrediant>();
+		this.ingrediants = new ArrayList<>();
 		this.alcoolise = false;
 	}
 
@@ -26,7 +26,7 @@ public class Cocktail {
 		return nom;
 	}
 
-	public Vector<Ingrediant> getIngrediants() {
+	public List<Ingrediant> getIngrediants() {
 		return ingrediants;
 	}
 
@@ -59,19 +59,21 @@ public class Cocktail {
 	public Boolean alcoolFree(){
 		return this.alcoolise;
 	}
-	
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
+
+	/**
+	 * Retourne une représentation textuelle du cocktail
+	 * @return Chaîne de caractères représentant le cocktail
 	 */
+	@Override
 	public String toString(){
-		String retour = new String();
-		Enumeration e = this.ingrediants.elements ();
-		Ingrediant current;
-		while (e.hasMoreElements ()) {
-			current = (Ingrediant)e.nextElement();
-			retour = retour + current.getIngrediant() + " " + current.getQuantite() + "%" + "\t";
+		StringBuilder retour = new StringBuilder("Cocktail: " + nom + "\n");
+		retour.append("Alcoolisé: ").append(Boolean.TRUE.equals(alcoolise) ? "Oui" : "Non").append("\n");
+		retour.append("Ingrédients:\n");
+		for (Ingrediant ingrediant : ingrediants) {
+			retour.append("\t").append(ingrediant.getNom()).append(" - ")
+					.append(ingrediant.getQuantite()).append("%\n");
 		}
-		return retour;
+		return retour.toString();
 	}
 
 }
