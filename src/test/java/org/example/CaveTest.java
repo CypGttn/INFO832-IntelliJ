@@ -29,7 +29,7 @@ class CaveTest {
     void testTakeBoissonExistante() {
         Cave cave = new Cave();
         Boisson boisson1 = new Boisson("ChateauNeufDuPape", 12.5F);
-        Boisson boisson2 = new Boisson("Bordeaux", 13.0F);
+        boisson2 = new Boisson("Bordeaux", 13.0F);
         cave.add(boisson1);
         cave.add(boisson2);
 
@@ -83,7 +83,7 @@ class CaveTest {
     void testTakeIntegrityOtherBoissons() {
         Cave cave = new Cave();
         Boisson boisson1 = new Boisson("ChateauNeufDuPape", 12.5F);
-        Boisson boisson2 = new Boisson("Bordeaux", 13.0F);
+        boisson2 = new Boisson("Bordeaux", 13.0F);
         cave.add(boisson1);
         cave.add(boisson2);
 

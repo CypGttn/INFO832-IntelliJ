@@ -1,6 +1,5 @@
 package org.example;
-import java.util.Vector; 
-import java.util.Enumeration;
+import java.util.ArrayList;
 
 /**
  * @author Pierre Le Fameux
@@ -17,12 +16,12 @@ public class Bar {
 	 * 
 	 */
 	public Bar(){
-		this.boissonChaude = new Vector<Boisson>();
-		this.boissonFroide = new Vector<Boisson>();
-		this.boissonAlcoolisee = new Vector<Boisson>();
+		this.boissonChaude = new ArrayList<Boisson>();
+		this.boissonFroide = new ArrayList<Boisson>();
+		this.boissonAlcoolisee = new ArrayList<Boisson>();
 		
-		this.cocktailAvecAlcoole = new Vector<Cocktail>();
-		this.cocktailSansAlcoole = new Vector<Cocktail>();	
+		this.cocktailAvecAlcoole = new ArrayList<Cocktail>();
+		this.cocktailSansAlcoole = new ArrayList<Cocktail>();
 	}
 
 	public Vector<Boisson> getBoissonChaude() {
@@ -60,7 +59,7 @@ public class Bar {
 	 * @param cocktail
 	 */
 	public void add(Cocktail cocktail){
-		if(cocktail.alcoolFree()){
+		if(Boolean.TRUE.equals(cocktail.alcoolFree())){
 			this.cocktailSansAlcoole.add(cocktail);
 		}else{
 			this.cocktailAvecAlcoole.add(cocktail);
@@ -117,44 +116,38 @@ public class Bar {
 	/* (non-Javadoc)
 	 * @see java.lang.Object#toString()
 	 */
-	public String toString(){
-		String retour = "";
-		String eol = System.getProperty("line.separator"); 
-		Enumeration e;
-		
-		retour = retour + "Bar : " + eol;
-		
-		retour = retour + "\t Sans alcool" + eol;
-		e = this.boissonFroide.elements ();
-		while (e.hasMoreElements ()) {
-			retour = retour + "\t\t" + e.nextElement().toString() + eol;
+	@Override
+	public String toString() {
+		StringBuilder retour = new StringBuilder();
+		String eol = System.lineSeparator();
+
+		retour.append("Bar : ").append(eol);
+		retour.append("\t Sans alcool").append(eol);
+		for (Boisson b : boissonFroide) {
+			retour.append("\t\t").append(b.toString()).append(eol);
 		}
-		
-		retour = retour + "\t Avec alcool" + eol;
-		e = this.boissonAlcoolisee.elements();
-		while (e.hasMoreElements ()) {
-			retour = retour + "\t\t" + e.nextElement().toString() + eol;
+
+		retour.append("\t Avec alcool").append(eol);
+		for (Boisson b : boissonAlcoolisee) {
+			retour.append("\t\t").append(b.toString()).append(eol);
 		}
-		
-		retour = retour + "\t Cocktail sans alcool" + eol;
-		e = this.cocktailSansAlcoole.elements();
-		while (e.hasMoreElements ()) {
-			retour = retour + "\t\t" + e.nextElement().toString() + eol;
+
+		retour.append("\t Cocktail sans alcool").append(eol);
+		for (Cocktail c : cocktailSansAlcoole) {
+			retour.append("\t\t").append(c.toString()).append(eol);
 		}
-		
-		retour = retour + "\t Cocktail avec alcool" + eol;
-		e = this.cocktailAvecAlcoole.elements();
-		while (e.hasMoreElements ()) {
-			retour = retour + "\t\t" + e.nextElement().toString() + eol;
+
+		retour.append("\t Cocktail avec alcool").append(eol);
+		for (Cocktail c : cocktailAvecAlcoole) {
+			retour.append("\t\t").append(c.toString()).append(eol);
 		}
-		
-		retour = retour + "\t Boissons chaudes" + eol;
-		e = this.boissonChaude.elements();
-		while (e.hasMoreElements ()) {
-			retour = retour + "\t\t" + e.nextElement().toString() + eol;
+
+		retour.append("\t Boissons chaudes").append(eol);
+		for (Boisson b : boissonChaude) {
+			retour.append("\t\t").append(b.toString()).append(eol);
 		}
-		
-		return retour;
+
+		return retour.toString();
 	}
 
 }
