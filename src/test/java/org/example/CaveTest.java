@@ -37,8 +37,8 @@ class CaveTest {
 
         assertNotNull(taken, "La boisson doit être retournée");
         assertEquals("ChateauNeufDuPape", taken.getNom(), "La boisson retirée doit correspondre au nom");
-        assertEquals(1, cave.getRayons().size(), "Il doit rester une boisson dans la cave");
-        assertFalse(cave.getRayons().contains(boisson1), "La boisson retirée ne doit plus être dans la cave");
+        assertEquals(1, cave.getRayonsBoisson().size(), "Il doit rester une boisson dans la cave");
+        assertFalse(cave.getRayonsBoisson().contains(boisson1), "La boisson retirée ne doit plus être dans la cave");
     }
 
     @Test
@@ -51,7 +51,7 @@ class CaveTest {
         Boisson taken = cave.take("Bordeaux");
 
         assertNull(taken, "Aucune boisson ne doit être retournée si elle n'existe pas");
-        assertEquals(1, cave.getRayons().size(), "La cave doit toujours contenir une boisson");
+        assertEquals(1, cave.getRayonsBoisson().size(), "La cave doit toujours contenir une boisson");
     }
 
     @Test
@@ -90,8 +90,8 @@ class CaveTest {
         Boisson taken = cave.take("ChateauNeufDuPape");
 
         assertNotNull(taken, "La boisson doit être retirée");
-        assertEquals(1, cave.getRayons().size(), "Il doit rester une boisson dans la cave");
-        assertTrue(cave.getRayons().contains(boisson2), "L'autre boisson doit toujours être dans la cave");
+        assertEquals(1, cave.getRayonsBoisson().size(), "Il doit rester une boisson dans la cave");
+        assertTrue(cave.getRayonsBoisson().contains(boisson2), "L'autre boisson doit toujours être dans la cave");
     }
 
 
