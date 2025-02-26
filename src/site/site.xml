@@ -1,0 +1,9 @@
+<project>
+    <body>
+        <menu name="Rapports de Qualité">
+            <item name="Rapport JaCoCo" href="jacoco/index.html"/>
+            <item name="Rapport Surefire" href="surefire.html"/>
+            <item name="Rapport SonarQube" href="sonarqube.html"/>
+        </menu>
+    </body>
+</project>
