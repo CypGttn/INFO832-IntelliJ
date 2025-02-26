@@ -34,12 +34,11 @@ class BarTest {
     @DisplayName("Ajout d'un cocktail sans alcool")
     void testAjoutCocktailSansAlcool() {
         Bar bar = new Bar();
-        Cocktail mocktail = new Cocktail("Virgin Mojito");
-
-        bar.add(mocktail);
+        Cocktail virginMojito = new Cocktail("Virgin Mojito"); // Par défaut, sans alcool
+        bar.add(virginMojito);
 
         assertEquals(1, bar.getCocktailSansAlcoole().size(), "Le cocktail sans alcool doit être dans cocktailSansAlcoole");
-        assertTrue(bar.getCocktailSansAlcoole().contains(mocktail), "Le cocktail doit être présent dans cocktailSansAlcoole");
+        assertTrue(bar.getCocktailSansAlcoole().contains(virginMojito), "Le cocktail doit être présent dans cocktailSansAlcoole");
     }
 
     @Test
@@ -47,8 +46,7 @@ class BarTest {
     void testAjoutCocktailAvecAlcool() {
         Bar bar = new Bar();
         Cocktail pinaColada = new Cocktail("Pina Colada");
-        pinaColada.setAlcoolise(true);
-
+        pinaColada.setAlcoolise(true); // On précise qu'il contient de l'alcool
         bar.add(pinaColada);
 
         assertEquals(1, bar.getCocktailAvecAlcoole().size(), "Le cocktail alcoolisé doit être dans cocktailAvecAlcoole");
@@ -101,6 +99,22 @@ class BarTest {
     }
 
     @Test
+    @DisplayName("Servir un cocktail avec alcool existant")
+    void testServirCocktailAvecAlcool() {
+        Bar bar = new Bar();
+        Cocktail blueLagoon = new Cocktail("Blue Lagoon");
+        blueLagoon.setAlcoolise(true); // Spécifier qu'il est alcoolisé
+        bar.add(blueLagoon);
+
+        Object servi = bar.serv("Blue Lagoon");
+
+        assertNotNull(servi, "Le cocktail doit être servi");
+        assertTrue(servi instanceof Cocktail, "L'objet retourné doit être un cocktail");
+        assertEquals("Blue Lagoon", ((Cocktail) servi).getNom(), "Le cocktail servi doit être celui demandé");
+        assertEquals(0, bar.getCocktailAvecAlcoole().size(), "Le cocktail doit être retiré du bar");
+    }
+
+    @Test
     @DisplayName("Servir une boisson non existante")
     void testServirBoissonInexistante() {
         Bar bar = new Bar();
@@ -117,7 +131,7 @@ class BarTest {
         Boisson cafe = new Boisson("Café", 0.0F);
         Boisson whisky = new Boisson("Whisky", 40.0F);
         Cocktail mojito = new Cocktail("Mojito");
-        mojito.setAlcoolise(true);
+        mojito.setAlcoolise(true); // Mojito alcoolisé
 
         bar.add(cafe);
         bar.add(whisky);
@@ -130,6 +144,4 @@ class BarTest {
         assertTrue(result.contains("Whisky"), "Le texte doit contenir 'Whisky'");
         assertTrue(result.contains("Mojito"), "Le texte doit contenir 'Mojito'");
     }
-
-
 }
